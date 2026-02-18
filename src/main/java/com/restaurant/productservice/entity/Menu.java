@@ -28,7 +28,7 @@ public class Menu {
         private String description;
 
         private String imageUrl;
-        @ManyToMany
+        @ManyToMany(fetch = FetchType.EAGER)
         @JoinTable(
                 name = "menu_products",
                 joinColumns = @JoinColumn(name = "menu_id"),
