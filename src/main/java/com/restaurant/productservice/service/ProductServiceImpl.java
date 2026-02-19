@@ -20,7 +20,7 @@ public class ProductServiceImpl  implements  ProductService{
 
         private final ProductRepository productRepository;
         private final ProductMapper productMapper;
-        private final FileStorageService fileStorageService;
+
 
         @Override
         public ResponceProductDTO addProduct(RequestProductDTO requestProductDTO) {
@@ -51,9 +51,7 @@ public class ProductServiceImpl  implements  ProductService{
         Product product = productRepository.findById(id)
                 .orElseThrow();
 
-        if (product.getImageUrl() != null) {
-            fileStorageService.deleteFile(product.getImageUrl());
-        }
+
         productRepository.delete(product);
     }
 
@@ -69,9 +67,7 @@ public class ProductServiceImpl  implements  ProductService{
         if (nv_Product.getDescription() != null) product.setDescription(nv_Product.getDescription());
         if (requestProductDTO.getImageUrl() != null) {
             // Supprimer ancienne image si existe
-            if (product.getImageUrl() != null) {
-                fileStorageService.deleteFile(product.getImageUrl());
-            }
+
 
             product.setImageUrl(requestProductDTO.getImageUrl());
         }
