@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,7 +22,7 @@ public class ResponceProductDTO {
     @NotNull
     private ProductCategory category;
 
-    private Double price;
+
 
     private Boolean available;
 
@@ -27,4 +30,7 @@ public class ResponceProductDTO {
     private String description;
 
     private String imageUrl;
+
+    private List<ProductSizeResponseDTO> sizes;
+    private List<Long> sauceIds;
 }

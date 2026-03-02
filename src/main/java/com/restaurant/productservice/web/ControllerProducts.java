@@ -3,10 +3,12 @@ package com.restaurant.productservice.web;
 import com.restaurant.productservice.Dto.RequestProductDTO;
 import com.restaurant.productservice.Dto.ResponceProductDTO;
 import com.restaurant.productservice.enums.ProductCategory;
+import com.restaurant.productservice.service.ProductService;
 import com.restaurant.productservice.service.ProductServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -15,7 +17,7 @@ import java.util.List;
 @RequestMapping("/v1/produits")
 public class ControllerProducts {
 
-    private final ProductServiceImpl productService;
+    private final ProductService productService;
 
     public ControllerProducts(ProductServiceImpl productService) {
         this.productService = productService;
@@ -57,6 +59,10 @@ public class ControllerProducts {
             @RequestParam String name) {
 
         return ResponseEntity.ok(productService.searchProducts(name));
+    }
+    @GetMapping("/categories")
+    public ResponseEntity<List<ProductCategory>> getAllCategories() {
+        return ResponseEntity.ok(Arrays.asList(ProductCategory.values()));
     }
 
 }
